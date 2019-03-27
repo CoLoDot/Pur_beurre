@@ -1,0 +1,36 @@
+{% extends 'substitut/base.html' %}
+
+
+{% block content %}
+
+
+
+<section id="bg-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-heading">Vous connecter</h2>
+          <hr class="my-4">
+
+
+            <form method="post">
+                {% csrf_token %}
+                {%  include 'substitut/form.html' %}
+            </form>
+            <hr class="my-4">
+            <div class="col-lg-6 mx-auto">
+                {% if not user.is_authenticated %}
+                <h4>Si vous n'avez pas de compte client, <a href="{% url 'substitut:signup' %}">cliquez ici</a>  pour en créer un !</h4>
+                <hr class="my-4">
+                {% endif %}
+            </div>
+
+
+
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="/">Retour à l'acceuil du site</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

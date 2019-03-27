@@ -1,0 +1,57 @@
+{% extends 'substitut/base.html' %}
+
+{% block content %}
+    <!-- Header -->
+  <header class="masthead text-center text-white d-flex">
+
+    <div id="welcomingcustomer" class="container my-auto col-lg-8">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+          <h1 class="text-center">
+            <strong>Du gras, oui, mais de qualité !</strong>
+          </h1>
+        </div>
+        <div class="col-lg-10 mx-auto">
+          <h2 class="text-center">Trouvez un produit de substitution pour ceux que vous consommez tous les jours</h2>
+            <div class="text-center">
+                <form action="{% url 'substitut:search' %}" method="get" accept-charset="utf-8">
+                    <div class="form-inline col-lg-12 mx-auto">
+                        <input placeholder="Tapez le nom du produit" name="query" class="col-lg-8 col-sm-8 form-control">
+                        <input type="submit" value="Chercher" class="btn btn-primary js-scroll-trigger col-lg-4 col-sm-4">
+                    </div>
+                  </form>
+                <p></p>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- History -->
+  <section id="bg-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-heading">Colette & Remy</h2>
+          <hr class="my-4">
+            <p>
+                De la ratatouille aux croissants
+                Pur Beurre est l'initiative de deux amoureux de la gastronomie française, Colette Tatou et Rémy,
+                que vous avez déjà certainement rencontrés dans notre excellent restaurant Ratatouille.
+            </p>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <img class="img-fluid" src="../../static/substitut/img/portfolio/fullsize/colette-tatou-full%20(1).png" alt="Colette">
+                </div>
+                <div class="col-lg-6">
+                    <img class="img-fluid" src="../../static/substitut/img/portfolio/fullsize/remy.png" alt="Remy">
+                </div>
+            </div>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#page-top">Je veux trouver un aliment !</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

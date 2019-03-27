@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
+  <title>Pur Beurre</title>
+    {% load static %}
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'substitut/vendor/bootstrap/css/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'substitut/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+  <!-- Plugin CSS -->
+  <link href="{% static 'substitut/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'substitut/css/creative.css' %}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+          <img src="{% static 'substitut/img/portfolio/fullsize/logo_pur_beurre.png' %}" class="img-fluid" alt="Responsive image" style="width: 5vh">
+          Pur Beurre</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+          <div id="mynavformclass" class="form-control">
+            <form action="{% url 'substitut:search' %}" method="get" accept-charset="utf-8">
+              <input id="mynavform" class="form-control mr-sm-2" name="query" placeholder="Chercher" aria-label="Search">
+
+                  </form>
+            </form>
+          </div>
+          </li>
+          <li class="nav-item">
+              {% if user.is_authenticated %}
+                 <a class="nav-link js-scroll-trigger" href="{% url 'substitut:useraccount' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_User_1214549.png' %}" class="img-fluid" alt="User by alvianwijaya from the Noun Project" style="width: 4vh"></a>
+              {% else %}
+              <a class="nav-link js-scroll-trigger" href="{% url 'substitut:login' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_User_1214549.png' %}" class="img-fluid" alt="User by alvianwijaya from the Noun Project" style="width: 4vh"></a>
+              {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'substitut:userproducts' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_Carrot_29691%20copie.png' %}" class="img-fluid" alt="Carrot by Fabien Jouin from the Noun Project" style="width: 4vh"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'substitut:logout' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_Power_652650.png' %}" class="img-fluid" alt="Power by Joris Millot from the Noun Project" style="width: 5vh"></a>
+          </li>
+          <!--<li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    {% block content %}{% endblock %}
+
+    <!-- Contact -->
+  <section id="bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-heading">Contactez-nous !</h2>
+          <hr class="my-4">
+          <p class="mb-5">Une question ? Une remarque ? N'hésitez pas à nous joindre par téléphone ou par mail :</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 ml-auto text-center">
+          <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
+          <p>000-000-000</p>
+        </div>
+        <div class="col-lg-4 mr-auto text-center">
+          <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
+          <p>
+            <a href="mailto:your-email@your-domain.com">purbeurre@purbeurre.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="fixed-bottom">
+      <div class="fixed-bottom">
+      <ul class="text-center list-unstyled list-inline">
+          <li class="list-inline-item">
+              <a href="{% url 'substitut:mentionslegales' %}">Mentions légales</a>
+          </li>
+          <li class="list-inline-item">
+              <a href="#bg-dark">Contact</a>
+          </li>
+      </ul>
+      </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'substitut/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'substitut/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'substitut/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'substitut/vendor/scrollreveal/scrollreveal.min.js' %}"></script>
+  <script src="{% static 'substitut/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'substitut/js/creative.min.js' %}"></script>
+
+</body>
+
+</html>

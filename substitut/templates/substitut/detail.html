@@ -1,0 +1,68 @@
+{% extends 'substitut/base.html' %}
+{% load static %}
+{% block content %}
+    <section id="bg-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 mx-auto text-center">
+
+            <div class="col-lg-12" style="border-radius: 20px; height: 200px; background-image: url('{{ picture }}'); background-repeat: repeat-x; background-position: center;">
+                <div class="row">
+                    <div class="col-lg-6 mx-auto my-lg-5 rounded" style="background: #FFFFFF;">
+                        <h2>Aliment : {{ name }}</h2>
+                    </div>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                 <ul class="list-unstyled">
+                     {% if nutriscore == 'a' %}
+                            <li><img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore A" style="height: 100px"></li>
+                        {% elif nutriscore == 'b' %}
+                            <li><img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px"></li>
+                        {% elif nutriscore == 'c' %}
+                            <li><img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px"></li>
+                        {% elif nutriscore == 'd' %}
+                            <li><img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px"></li>
+                        {% elif nutriscore == 'e' %}
+                            <li><img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px"></li>
+                        {% else %}
+                            <li><h2>Nutriscore : {{ nutriscore|capfirst }}</h2></li>
+                        {% endif %}
+                 </ul>
+            </div>
+
+            <div class="col-lg-6">
+                <ul class="list-unstyled">
+                <li><h3>Repère nutritionnel pour 100g</h3></li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Enregistrer" name="saving" class="btn btn-success js-scroll-trigger">
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="alert-info" <h3>Pour enregistrer ce produit, <br><a href="{% url 'substitut:login' %}">connectez-vous !</a></h3></li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <p>
+                    <h4>
+                        <a href="{{ url }}">voir la fiche sur Open Food Facts</a>
+                    </h4>
+                </p>
+            </div>
+        </div>
+
+             <a class="btn btn-primary btn-xl js-scroll-trigger" href="/">Retour à l'acceuil du site</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
