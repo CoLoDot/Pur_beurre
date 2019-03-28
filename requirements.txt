@@ -1,0 +1,15 @@
+certifi==2019.3.9
+chardet==3.0.4
+Django==2.1.7
+django-debug-toolbar==1.11
+get==2019.3.22
+idna==2.8
+post==2019.3.22
+psycopg2==2.7.7
+public==2019.3.22
+pytz==2018.9
+query-string==2019.3.22
+request==2019.3.22
+requests==2.21.0
+sqlparse==0.3.0
+urllib3==1.24.1
