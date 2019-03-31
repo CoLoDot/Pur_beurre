@@ -67,7 +67,7 @@ def userlogin(request):
 def userlogout(request):
     """Logout a registred user"""
     logout(request)
-    return render(request, 'substitut/logout', locals())
+    return render(request, 'substitut/logout.html', locals())
 
 
 def mentionslegales(request):
@@ -91,26 +91,33 @@ def products(request):
 
 def userproducts(request):
     """Return saved products of a user"""
-    user = request.user.email
-    products_to_display = Saving.objects.filter(contact=user)
-    keys_list = []
-
-    for item in products_to_display:
-        keys_list.append(item.product_key)
-
-    product = Products.objects.filter(pk__in=keys_list)
-
-    paginator = Paginator(product, 3)
-    page = request.GET.get('page')
 
     try:
-        product = paginator.page(page)
-    except PageNotAnInteger:
-        product = paginator.page(1)
-    except EmptyPage:
-        product = paginator.page(paginator.num_pages)
+        user = request.user.email
+        products_to_display = Saving.objects.filter(contact=user)
+        keys_list = []
 
-    context = {"product": product}
+        for item in products_to_display:
+            keys_list.append(item.product_key)
+
+        product = Products.objects.filter(pk__in=keys_list)
+
+        paginator = Paginator(product, 3)
+        page = request.GET.get('page')
+
+        try:
+            product = paginator.page(page)
+        except PageNotAnInteger:
+            product = paginator.page(1)
+        except EmptyPage:
+            product = paginator.page(paginator.num_pages)
+
+        context = {"product": product}
+
+    except:
+        product = None
+        context = {"product": product}
+
     return render(request, 'substitut/userproducts.html', context)
 
 
@@ -185,15 +192,23 @@ def search(request):
 
 def detail(request, produit_id):
     """Details products"""
-    product_detail = get_object_or_404(Products, pk=produit_id)
-    user = request.user.email
-    saving = request.POST.get('saving')
-    if saving:
-        Saving.objects.create(contact=user,
-                              product_key=product_detail.pk)
+    try:
+        product_detail = get_object_or_404(Products, pk=produit_id)
+        user = request.user.email
+        saving = request.POST.get('saving')
+        if saving:
+            Saving.objects.create(contact=user,
+                                  product_key=product_detail.pk)
 
-    context = {'name': product_detail.name,
-               'nutriscore': product_detail.nutriscore,
-               'picture': product_detail.picture,
-               'url': product_detail.url}
+        context = {'name': product_detail.name,
+                   'nutriscore': product_detail.nutriscore,
+                   'picture': product_detail.picture,
+                   'url': product_detail.url}
+    except:
+        product_detail = get_object_or_404(Products, pk=produit_id)
+        context = {'name': product_detail.name,
+                   'nutriscore': product_detail.nutriscore,
+                   'picture': product_detail.picture,
+                   'url': product_detail.url}
+
     return render(request, 'substitut/detail.html', context)
