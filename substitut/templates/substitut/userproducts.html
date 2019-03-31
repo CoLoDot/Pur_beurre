@@ -13,70 +13,7 @@
             {% if user.is_authenticated %}
                 <h3>A hoy ! {{ user.username }}</h3>
 
-                <hr class="my-4">
-                <div class="mx-auto">
-                    {% if product %}
-                        <ul class="list-inline">
-                            {% for p in product %}
-
-                                    <li class="list-inline-item">
-                                        <p>
-                                            {% if p.picture %}
-                                                <img class="img-thumbnail" src="{{ p.picture }}" alt="product picture {{ p.name }}" style="max-height: 200px; max-width: 200px;">
-                                            {% else %}
-                                                <p style="border: solid 1px #17a2b8;">Image manquante</p>
-                                            {% endif %}
-                                            <h4>{{ p.name|truncatechars_html:15 }}</h4>
-
-                                            {% if p.nutriscore == 'a' %}
-                                                <img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore A" style="height: 100px">
-                                            {% elif p.nutriscore == 'b' %}
-                                                <img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px">
-                                            {% elif p.nutriscore == 'c' %}
-                                                <img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px">
-                                            {% elif p.nutriscore == 'd' %}
-                                                <img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px">
-                                            {% elif p.nutriscore == 'e' %}
-                                                <img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px">
-                                            {% else %}
-                                                <h2>{{ p.nutriscore|capfirst }}</h2>
-                                            {% endif %}
-
-                                            <h4><a href="/substitut/{{ p.pk }}">consulter</a></h4>
-
-                                        </p>
-                                    </li>
-
-                                {% if forloop.counter|divisibleby:3 %}
-                                    <div class="clearfix"></div>
-                                {% endif %}
-
-
-                            {% endfor %}
-                        </ul>
-
-                        <div class="clearfix"></div>
-                          <nav aria-label="...">
-                            <ul class="pager list-unstyled list-inline-item">
-                              {% if product.has_previous %}
-                                  <li class="list-inline-item"><a href="?page={{ product.previous_page_number }}">Précédent</a></li>
-                              {% endif %}
-                              {% if product.has_next %}
-                                  <li class="list-inline-item"><a href="?page={{ product.next_page_number }}">Suivant</a></li>
-                              {% endif %}
-                            </ul>
-                          </nav>
-
-                        </div>
-
-
-                        {% else %}
-                        <div class="mx-auto col-lg-6 text-center">
-                            <h3>Il n'y a pas de résultat correspondant à votre recherche</h3>
-                        </div>
-
-                    {% endif %}
-
+                {% include 'substitut/products.html' %}
 
             {% else %}
                 <h2>Vous n'êtes pas connecté.</h2>
