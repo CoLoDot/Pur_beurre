@@ -20,13 +20,17 @@ class Products(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
 
 
 class Saving(models.Model):
-    contact = models.ForeignKey(Users, on_delete=models.CASCADE)
-    saved_product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    contact = models.CharField(max_length=100, default='')
+    product_key = models.CharField(max_length=9000, default='')
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.saved_product)
+        return str(self.contact)
+
+
+    class Meta:
+        ordering = ['date']

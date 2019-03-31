@@ -92,12 +92,23 @@ def products(request):
 def userproducts(request):
     """Return saved products of a user"""
     user = request.user.email
-    contact = Users.objects.get(email=user)
-    products = Saving.objects.filter(contact=contact)
-    product = Products.objects.all()
+    products_to_display = Saving.objects.filter(contact=user)
+    keys_list = []
 
-    for p in products:
-        product = Products.objects.filter(name__icontains=p)
+    for item in products_to_display:
+        keys_list.append(item.product_key)
+
+    product = Products.objects.filter(pk__in=keys_list)
+
+    paginator = Paginator(product, 3)
+    page = request.GET.get('page')
+
+    try:
+        product = paginator.page(page)
+    except PageNotAnInteger:
+        product = paginator.page(1)
+    except EmptyPage:
+        product = paginator.page(paginator.num_pages)
 
     context = {"product": product}
     return render(request, 'substitut/userproducts.html', context)
@@ -178,8 +189,8 @@ def detail(request, produit_id):
     user = request.user.email
     saving = request.POST.get('saving')
     if saving:
-        Saving.objects.create(contact=Users.objects.get(email=user),
-                              saved_product=Products.objects.get(pk=produit_id))
+        Saving.objects.create(contact=user,
+                              product_key=product_detail.pk)
 
     context = {'name': product_detail.name,
                'nutriscore': product_detail.nutriscore,
