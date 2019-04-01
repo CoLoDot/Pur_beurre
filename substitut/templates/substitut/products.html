@@ -14,25 +14,30 @@
                                             {% endif %}
                                             <h4>{{ p.name|truncatechars_html:15 }}</h4>
 
-                                            {% if p.nutriscore == 'a'%}
+
+                                             {% if p.nutriscore == '1' %}
                                                 <img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore A" style="height: 100px">
-                                             {% elif p.nutriscore == 1 %}
-                                                <img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore B" style="height: 100px">
-                                            {% elif p.nutriscore == 'b' %}
+                                             {% elif p.nutriscore == 'a'%}
+                                                <img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore A" style="height: 100px">
+
+                                             {% elif p.nutriscore == '2'%}
                                                 <img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px">
-                                             {% elif p.nutriscore == 2 %}
-                                            <img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px">
+                                            {% elif p.nutriscore == 'b'%}
+                                                <img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px">
+
+                                             {% elif p.nutriscore == '3' %}
+                                                <img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px">
                                             {% elif p.nutriscore == 'c' %}
                                                 <img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px">
-                                             {% elif p.nutriscore == 3 %}
-                                                <img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px">
+
+                                             {% elif p.nutriscore == '4'%}
+                                                <img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px">
                                             {% elif p.nutriscore == 'd' %}
                                                 <img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px">
-                                             {% elif p.nutriscore == 4 %}
-                                                <img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px">
-                                            {% elif p.nutriscore == 'e' %}
+
+                                             {% elif p.nutriscore == '5'%}
                                                 <img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px">
-                                             {% elif p.nutriscore == 5 %}
+                                              {% elif p.nutriscore == 'e'%}
                                                 <img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px">
                                             {% else %}
                                                 <h2>{{ p.nutriscore|capfirst }}</h2>
