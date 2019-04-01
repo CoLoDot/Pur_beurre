@@ -6,7 +6,7 @@ from . import views  # import views so we can use them in urls.
 app_name = 'substitut'
 
 urlpatterns = [
-    url(r'^(?P<produit_id>[0-9]+)/$', views.detail),
+    url(r'^(?P<product_id>[0-9]+)/$', views.detail),
     url(r'^search', views.search, name='search'),
     url(r'^mentionslegales/$', views.mentionslegales, name='mentionslegales'),
     url(r'^useraccount/$', views.useraccount, name='useraccount'),
