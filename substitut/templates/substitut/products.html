@@ -43,7 +43,7 @@
                                                 <h2>{{ p.nutriscore|capfirst }}</h2>
                                             {% endif %}
 
-                                            <h4><a href="{{ p.pk }}">consulter</a></h4>
+                                            <h4><a href="{% url 'substitut:detail' product_id=p.pk  %}">consulter</a></h4>
 
                                             </p>
                                         </li>
