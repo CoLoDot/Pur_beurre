@@ -29,11 +29,9 @@
                                             {% endif %}
 
                                             <h4><a href="{{ p.pk }}">consulter</a></h4>
-                                            {% if user.is_authenticated %}
-                                                <a class="btn btn-success js-scroll-trigger" name="saving" href="/">Enregistrer</a>
-                                            {% endif %}
-                                        </p>
-                                    </li>
+
+                                            </p>
+                                        </li>
 
                                 {% if forloop.counter|divisibleby:3 %}
                                     <div class="clearfix"></div>
