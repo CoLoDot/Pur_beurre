@@ -180,20 +180,22 @@ def search(request):
             product = paginator.page(page)
         except PageNotAnInteger:
             product = paginator.page(1)
+
         except EmptyPage:
             product = paginator.page(paginator.num_pages)
 
-        context = {"product": product}
+        context = {"product": product,
+                   "urlp": query}
 
     return render(request, 'substitut/search.html', context)
 
 
 #  DOC API OFF : https://en.wiki.openfoodfacts.org/index.php?title=API&oldid=7026
 
-def detail(request, produit_id):
-    """Details products"""
+def detail(request, product_id):
+    """Details for a product"""
     try:
-        product_detail = get_object_or_404(Products, pk=produit_id)
+        product_detail = get_object_or_404(Products, pk=product_id)
         user = request.user.email
         saving = request.POST.get('saving')
         if saving:
@@ -205,7 +207,7 @@ def detail(request, produit_id):
                    'picture': product_detail.picture,
                    'url': product_detail.url}
     except:
-        product_detail = get_object_or_404(Products, pk=produit_id)
+        product_detail = get_object_or_404(Products, pk=product_id)
         context = {'name': product_detail.name,
                    'nutriscore': product_detail.nutriscore,
                    'picture': product_detail.picture,
