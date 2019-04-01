@@ -17,19 +17,29 @@
         <div class="row">
             <div class="col-lg-6">
                  <ul class="list-unstyled">
-                     {% if nutriscore == 'a' %}
-                            <li><img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore A" style="height: 100px"></li>
-                        {% elif nutriscore == 'b' %}
-                            <li><img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px"></li>
-                        {% elif nutriscore == 'c' %}
-                            <li><img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px"></li>
-                        {% elif nutriscore == 'd' %}
-                            <li><img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px"></li>
-                        {% elif nutriscore == 'e' %}
-                            <li><img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px"></li>
-                        {% else %}
-                            <li><h2>Nutriscore : {{ nutriscore|capfirst }}</h2></li>
-                        {% endif %}
+                     {% if p.nutriscore == 'a'%}
+                        <img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore A" style="height: 100px">
+                     {% elif p.nutriscore == 1 %}
+                        <img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore B" style="height: 100px">
+                    {% elif p.nutriscore == 'b' %}
+                        <img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px">
+                     {% elif p.nutriscore == 2 %}
+                    <img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px">
+                    {% elif p.nutriscore == 'c' %}
+                        <img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px">
+                     {% elif p.nutriscore == 3 %}
+                        <img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px">
+                    {% elif p.nutriscore == 'd' %}
+                        <img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px">
+                     {% elif p.nutriscore == 4 %}
+                        <img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px">
+                    {% elif p.nutriscore == 'e' %}
+                        <img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px">
+                     {% elif p.nutriscore == 5 %}
+                        <img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px">
+                    {% else %}
+                        <h2>{{ p.nutriscore|capfirst }}</h2>
+                    {% endif %}
                  </ul>
             </div>
 
