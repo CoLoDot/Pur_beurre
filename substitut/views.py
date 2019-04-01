@@ -124,11 +124,11 @@ def userproducts(request):
 def search(request):
     """User's search return the result from query's form on index"""
     query = request.GET.get('query')
-    nutriscore_number = {1:'a',
-                         2:'b',
-                         3:'c',
-                         4:'d',
-                         5:'e'}
+    nutriscore_number = {1: 'a',
+                         2: 'b',
+                         3: 'c',
+                         4: 'd',
+                         5: 'e'}
     if not query:
         product_list = Products.objects.all()
         paginator = Paginator(product_list, 3)
@@ -168,7 +168,6 @@ def search(request):
                         for key, value in nutriscore_number.items():
                             if get_nutriscore == value:
                                 get_nutriscore = key
-
                     except KeyError:
                         get_nutriscore = ''
 
