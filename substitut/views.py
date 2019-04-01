@@ -102,7 +102,7 @@ def userproducts(request):
 
         product = Products.objects.filter(pk__in=keys_list)
 
-        paginator = Paginator(product, 3)
+        paginator = Paginator(product, 6)
         page = request.GET.get('page')
 
         try:
@@ -124,7 +124,11 @@ def userproducts(request):
 def search(request):
     """User's search return the result from query's form on index"""
     query = request.GET.get('query')
-
+    nutriscore_number = {1:'a',
+                         2:'b',
+                         3:'c',
+                         4:'d',
+                         5:'e'}
     if not query:
         product_list = Products.objects.all()
         paginator = Paginator(product_list, 3)
@@ -139,7 +143,7 @@ def search(request):
 
         context = {"product": product}
     else:
-        product_list = Products.objects.filter(name__icontains=query)
+        product_list = Products.objects.filter(name__icontains=query).order_by('nutriscore')
 
         if not product_list:
             search_url = requests.get("https://fr.openfoodfacts.org/cgi/search.pl?action=process&search_terms="
@@ -161,6 +165,10 @@ def search(request):
                         get_img = ''
                     try:
                         get_nutriscore = response['products'][product_index]['nutrition_grades']
+                        for key, value in nutriscore_number.items():
+                            if get_nutriscore == value:
+                                get_nutriscore = key
+
                     except KeyError:
                         get_nutriscore = ''
 
@@ -172,7 +180,7 @@ def search(request):
                                             picture=get_img,
                                             url=get_url)
 
-        product_list = Products.objects.filter(name__icontains=query)
+        product_list = Products.objects.filter(name__icontains=query).order_by('nutriscore')
         paginator = Paginator(product_list, 3)
         page = request.GET.get('page')
 
