@@ -17,32 +17,33 @@
         <div class="row">
             <div class="col-lg-6">
                  <ul class="list-unstyled">
-                      {% if p.nutriscore == '1' %}
+
+                      {% if nutriscore == '1' %}
                         <img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore A" style="height: 100px">
-                     {% elif p.nutriscore == 'a'%}
+                     {% elif nutriscore == 'a'%}
                         <img src="{% static 'substitut/img/a.svg' %}"  alt="Nutriscore A" style="height: 100px">
 
-                     {% elif p.nutriscore == '2'%}
+                     {% elif nutriscore == '2'%}
                         <img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px">
-                    {% elif p.nutriscore == 'b'%}
+                    {% elif nutriscore == 'b'%}
                         <img src="{% static 'substitut/img/b.svg' %}"  alt="Nutriscore B" style="height: 100px">
 
-                     {% elif p.nutriscore == '3' %}
+                     {% elif nutriscore == '3' %}
                         <img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px">
-                    {% elif p.nutriscore == 'c' %}
+                    {% elif nutriscore == 'c' %}
                         <img src="{% static 'substitut/img/c.svg' %}"  alt="Nutriscore C" style="height: 100px">
 
-                     {% elif p.nutriscore == '4'%}
+                     {% elif nutriscore == '4'%}
                         <img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px">
-                    {% elif p.nutriscore == 'd' %}
+                    {% elif nutriscore == 'd' %}
                         <img src="{% static 'substitut/img/d.svg' %}"  alt="Nutriscore D" style="height: 100px">
 
-                     {% elif p.nutriscore == '5'%}
+                     {% elif nutriscore == '5'%}
                         <img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px">
-                      {% elif p.nutriscore == 'e'%}
+                      {% elif nutriscore == 'e'%}
                         <img src="{% static 'substitut/img/e.svg' %}"  alt="Nutriscore E" style="height: 100px">
                     {% else %}
-                        <h2>{{ p.nutriscore|capfirst }}</h2>
+                        <h2>{{ nutriscore|capfirst }}</h2>
                     {% endif %}
                  </ul>
             </div>
