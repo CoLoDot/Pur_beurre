@@ -1,4 +1,4 @@
-# Pur Beurre
+# Pur Beurre - P8
 
 **Pur Beurre is a school project to learn Django**
 
