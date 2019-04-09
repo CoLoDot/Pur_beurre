@@ -13,14 +13,12 @@ class Users(models.Model):
 class Products(models.Model):
     name = models.CharField(max_length=100)
     nutriscore = models.CharField(max_length=1)
+    category = models.CharField(max_length=1000, default='')
     picture = models.URLField()
     url = models.URLField()
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        ordering = ['id']
 
 
 class Saving(models.Model):
@@ -30,7 +28,6 @@ class Saving(models.Model):
 
     def __str__(self):
         return str(self.contact)
-
 
     class Meta:
         ordering = ['date']
