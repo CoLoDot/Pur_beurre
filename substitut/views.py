@@ -43,7 +43,7 @@ def signup(request):
 
 
 def userlogin(request):
-    """LogIn a registred user"""
+    """LogIn a registered user"""
     error = False
 
     if request.method == "POST":
@@ -170,6 +170,10 @@ def search(request):
 
         filteringbycategory = Products.objects.filter(name__icontains=query)
         cat = []
+        pc = []
+        for p in filteringbycategory:
+            pc.append(p.picture)
+
         for i in filteringbycategory:
             cat.append(i.category)
 
@@ -182,7 +186,9 @@ def search(request):
 
         product = customizePagination(request, product_list, 6)
         context = {"product": product,
-                   "urlp": query}
+                   "urlp": query,
+                   "name": query,
+                   "picture": pc[0]}
 
     return render(request, 'substitut/search.html', context)
 
