@@ -1,1 +1,1 @@
-web: gunicorn purbeurre.wsgi
+web: gunicorn substitut.wsgi
