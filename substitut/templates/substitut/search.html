@@ -5,7 +5,15 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 mx-auto text-center">
-        <h2 class="section-heading">Votre résultat de recherche</h2>
+
+            <div class="col-lg-12" style="border-radius: 20px; height: 200px; background-image: url('{{ picture }}'); background-repeat: repeat-x; background-position: center;">
+                <div class="row">
+                    <div class="col-lg-6 mx-auto my-lg-5 rounded" style="background: #FFFFFF;">
+                        <h2>Votre recherche : {{ name }}</h2>
+                    </div>
+                </div>
+            </div>
+            <h2 class="section-heading">Vous pouvez remplacer cet aliment par :</h2>
           {% include 'substitut/products.html' %}
 
 
