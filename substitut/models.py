@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 class Users(models.Model):
@@ -13,7 +13,7 @@ class Users(models.Model):
 class Products(models.Model):
     name = models.CharField(max_length=100)
     nutriscore = models.CharField(max_length=1)
-    category = models.CharField(max_length=1000, default='')
+    category = ArrayField(models.CharField(max_length=900), blank=True, size=None)
     picture = models.URLField()
     url = models.URLField()
 
