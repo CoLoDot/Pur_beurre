@@ -53,14 +53,18 @@
               {% if user.is_authenticated %}
                  <a class="nav-link js-scroll-trigger" href="{% url 'substitut:useraccount' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_User_1214549.png' %}" class="img-fluid" alt="User by alvianwijaya from the Noun Project" style="width: 4vh"></a>
               {% else %}
-              <a class="nav-link js-scroll-trigger" href="{% url 'substitut:login' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_User_1214549.png' %}" class="img-fluid" alt="User by alvianwijaya from the Noun Project" style="width: 4vh"></a>
+                <a class="nav-link js-scroll-trigger" href="{% url 'substitut:login' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_User_1214549.png' %}" class="img-fluid" alt="User by alvianwijaya from the Noun Project" style="width: 4vh"></a>
               {% endif %}
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{% url 'substitut:userproducts' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_Carrot_29691%20copie.png' %}" class="img-fluid" alt="Carrot by Fabien Jouin from the Noun Project" style="width: 4vh"></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'substitut:logout' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_Power_652650.png' %}" class="img-fluid" alt="Power by Joris Millot from the Noun Project" style="width: 5vh"></a>
+            {% if user.is_authenticated %}
+                <a class="nav-link js-scroll-trigger" href="{% url 'substitut:logout' %}"><img src="{% static 'substitut/img/portfolio/thumbnails/noun_Power_652650.png' %}" class="img-fluid" alt="Power by Joris Millot from the Noun Project" style="width: 5vh"></a>
+            {% else %}
+                 <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'substitut:signup' %}">Créer un compte</a>
+            {% endif %}
           </li>
           <!--<li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
