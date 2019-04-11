@@ -2,7 +2,7 @@
 
 **Pur Beurre is a school project to learn Django**
 
-*This is a web application, please got to http://vivelegras.herokuapp.com*
+*This is a web application, please go to http://vivelegras.herokuapp.com*
 
 ![Pur_beurre Screenshot](https://github.com/CoLoDot/Pur_beurre/blob/master/screenshot_pur_beurre.png)
 **What is it ?**
