@@ -130,9 +130,9 @@ def search(request):
             search_one_product = requests.get("https://fr.openfoodfacts.org/cgi/search.pl?action=process&search_terms="
                                               + str(query) + "&sort_by=unique_scans_n&page_size=20&json=1")
             response = json.loads(search_one_product.text)
-
+            products_created = 0
             for product_index in range(0, int(response['count'])):
-                if response['products'][product_index]['states_tags'][1] == 'en:complete':
+                if response['products'][product_index]['states_hierarchy'][1] == 'en:complete':
                     try:
                         get_name = response['products'][product_index]['product_name']
                     except KeyError:
@@ -153,9 +153,12 @@ def search(request):
                     except KeyError:
                         get_nutriscore = ''
                     try:
-                        categories_tags = response['products'][product_index]['categories_hierarchy'][1]
-                        cleaned_cat = categories_tags.split(':')
-                        get_cat = str(cleaned_cat[1])
+                        categories_tags = response['products'][product_index]['categories_hierarchy'][:]
+                        listing_categories = []
+                        for c in categories_tags:
+                            cleaned_cat = c.split(':')
+                            listing_categories.append(cleaned_cat[1])
+                        get_cat = listing_categories
                     except KeyError:
                         get_cat = ''
 
@@ -164,36 +167,54 @@ def search(request):
                                             category=get_cat,
                                             picture=get_img,
                                             url=get_url)
-
-                    if product_index == 15:
+                    products_created += 1
+                    if products_created < 30:
                         break
+
 
         filteringbycategory = Products.objects.filter(name__icontains=query)
         cat = []
-        pc = []
-        for p in filteringbycategory:
-            pc.append(p.picture)
-
         for i in filteringbycategory:
-            cat.append(i.category)
+            cat.extend(i.category)
+        cat = list(set(cat))
 
         try:
-            product_list = Products.objects.filter(category__icontains=random.choice(cat)) \
+            product_list = Products.objects.filter(category__contained_by=cat) \
                 .order_by('nutriscore', 'name')
+            pc = []
+            for p in filteringbycategory:
+                pc.append(p.picture)
+            product = customizePagination(request, product_list, 6)
+            try:
+                context = {"product": product,
+                           "urlp": query,
+                           "name": query,
+                           "picture": pc[0]}
+            except:
+                context = {"product": product,
+                           "urlp": query,
+                           "name": query}
+            print('Products.objects.filter(category__contained_by=cat)')
         except:
             product_list = Products.objects.filter(name__icontains=query) \
                 .order_by('nutriscore', 'name')
-
-        product = customizePagination(request, product_list, 6)
-        context = {"product": product,
-                   "urlp": query,
-                   "name": query,
-                   "picture": pc[0]}
+            pc = []
+            for p in filteringbycategory:
+                pc.append(p.picture)
+            product = customizePagination(request, product_list, 6)
+            try:
+                context = {"product": product,
+                           "urlp": query,
+                           "name": query,
+                           "picture": pc[0]}
+            except:
+                context = {"product": product,
+                           "urlp": query,
+                           "name": query}
+            print('Products.objects.filter(name__icontains=query)')
 
     return render(request, 'substitut/search.html', context)
 
-
-#  DOC API OFF : https://en.wiki.openfoodfacts.org/index.php?title=API&oldid=7026
 
 def detail(request, product_id):
     """Details for a product"""
@@ -204,7 +225,7 @@ def detail(request, product_id):
         if saving:
             Saving.objects.create(contact=user,
                                   product_key=product_detail.pk)
-
+        print(product_detail.category)
         context = {'name': product_detail.name,
                    'nutriscore': product_detail.nutriscore,
                    'picture': product_detail.picture,
