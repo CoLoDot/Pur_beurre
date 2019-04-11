@@ -1,9 +1,9 @@
 import json
 import requests
-import random
+
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .form import Connexion
 from .models import Products, Users, Saving
@@ -34,6 +34,10 @@ def signup(request):
                 users_db = Users.objects.create(email=email,
                                                 password=password)
                 users_db.save()
+                user = authenticate(username=username,
+                                    email=email,
+                                    password=password)
+                login(request, user)
             else:
                 error = True
     else:
@@ -100,7 +104,7 @@ def userproducts(request):
         for item in products_to_display:
             keys_list.append(item.product_key)
 
-        product_filter = Products.objects.filter(pk__in=keys_list)
+        product_filter = Products.objects.filter(pk__in=keys_list).order_by('id')
         product = customizePagination(request, product_filter, 6)
         context = {"product": product}
     except:
@@ -225,6 +229,8 @@ def detail(request, product_id):
         if saving:
             Saving.objects.create(contact=user,
                                   product_key=product_detail.pk)
+            return  redirect('substitut:userproducts')
+
         print(product_detail.category)
         context = {'name': product_detail.name,
                    'nutriscore': product_detail.nutriscore,
