@@ -11,13 +11,13 @@
         <div class="col-lg-8 mx-auto text-center">
           <h2 class="section-heading">Créez un compte client</h2>
           <hr class="my-4">
-
-            <h3>Remplissez le formulaire</h3>
-            <form method="post">
-                {% csrf_token %}
-                {%  include 'substitut/form.html' %}
-            </form>
-
+            {% if not user.is_authenticated %}
+                <h3>Remplissez le formulaire</h3>
+            {% endif %}
+                <form method="post">
+                        {% csrf_token %}
+                        {%  include 'substitut/form.html' %}
+                </form>
 
             <hr class="my-4">
           <a class="btn btn-primary btn-xl js-scroll-trigger" href="/">Retour à l'acceuil du site</a>
