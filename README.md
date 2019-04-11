@@ -6,7 +6,7 @@
 
 ![Pur_beurre Screenshot](https://github.com/CoLoDot/Pur_beurre/blob/master/screenshot_pur_beurre.png)
 **What is it ?**
->Pur Beurre is a web application available at {url}. Pur Beurre help you to find healthier products to eat than those who you already have at home. 
+>Pur Beurre help you to find healthier products to eat than those who you already have at home. 
 
 **How does it work ?**
 > Back-end : Pur Beurre is using the Django Framework & the API of the open source database Open Food Facts. By scrapping the API, Pur Beurre help you to get several products with better nutriscore. 
