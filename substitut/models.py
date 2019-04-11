@@ -13,7 +13,7 @@ class Users(models.Model):
 class Products(models.Model):
     name = models.CharField(max_length=100)
     nutriscore = models.CharField(max_length=1)
-    category = ArrayField(models.CharField(max_length=900), blank=True, size=None)
+    category = ArrayField(models.CharField(max_length=900), blank=True, size=None, default=list)
     picture = models.URLField()
     url = models.URLField()
 
