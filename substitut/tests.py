@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import authenticate
 from django.contrib import auth
+
 from django.contrib.auth.models import User
 from .models import Users, Products, Saving
 from .form import Connexion
@@ -139,6 +140,7 @@ class SavingPageTestCase(TestCase):
         self.contact = Users.objects.get(email='coco@coco.com')
         Products.objects.create(name='Chocolat Chaud',
                                 nutriscore='d',
+                                category=['coco', 'cococho'],
                                 url='http://chocolatchaud',
                                 picture='http://chocolatchaudpicture')
         self.product = Products.objects.get(name='Chocolat Chaud')
