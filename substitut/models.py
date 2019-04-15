@@ -16,12 +16,7 @@ class Products(models.Model):
     category = ArrayField(models.CharField(max_length=900), size=1, default=list, null=True)
     picture = models.URLField()
     url = models.URLField()
-    ArrayField(
-        ArrayField(
-            models.CharField(max_length=10, blank=True)
-        ),
-        size=1
-    )
+
     def __str__(self):
         return self.name
 
