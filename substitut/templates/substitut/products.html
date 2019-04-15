@@ -45,7 +45,15 @@
 
                                             <h4><a href="{% url 'substitut:detail' product_id=p.pk  %}">consulter</a></h4>
 
+                                        {% if user.is_authenticated %}
+                                                <form method="post" action="{% url 'substitut:detail' product_id=p.pk %}">
+                                                    {% csrf_token %}
+                                                    <i class="far fa-save fa-2x">
+                                                    <input type="submit" value="sauvegarder" name="saving" class="btn btn-success js-scroll-trigger"></i>
+                                                </form>
+                                            {% endif %}
                                             </p>
+
                                         </li>
 
                                 {% if forloop.counter|divisibleby:3 %}
