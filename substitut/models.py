@@ -13,10 +13,22 @@ class Users(models.Model):
 class Products(models.Model):
     name = models.CharField(max_length=100)
     nutriscore = models.CharField(max_length=1)
-    category = ArrayField(models.CharField(max_length=900), size=30, default=list, null=True)
+    category = ArrayField(
+        ArrayField(
+            models.CharField(max_length=1000, blank=True, default='')
+        ),
+        size=1,
+        default=list
+    )
+    #ArrayField(models.CharField(max_length=900), size=30, default=list, null=True)
     picture = models.URLField()
     url = models.URLField()
-
+    ArrayField(
+        ArrayField(
+            models.CharField(max_length=10, blank=True)
+        ),
+        size=1
+    )
     def __str__(self):
         return self.name
 
