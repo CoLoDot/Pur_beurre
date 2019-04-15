@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='products',
             name='category',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(default='{}', max_length=900), blank=True, default=list, null=True, size=30),
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=900), default=list, null=True, size=30),
         ),
     ]
