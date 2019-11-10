@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = '%9_^4xg)c&(!4m7!!2%q@is+argtz+)%%j2lh(g=ypz51h)lh+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ALLOWED_HOSTS = []
@@ -81,8 +81,8 @@ WSGI_APPLICATION = 'PurBeurre.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', # on utilise l'adaptateur postgresql
-        'NAME': 'purbeurre', # le nom de notre base de donnees creee precedemment
-        'USER': 'utilisateur', # attention : remplacez par votre nom d'utilisateur
+        'NAME': 'butter', # le nom de notre base de donnees creee precedemment
+        'USER': 'colodot', # attention : remplacez par votre nom d'utilisateur
         'PASSWORD': '',
         'HOST': '',
         'PORT': '5432',
