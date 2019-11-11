@@ -1,17 +1,18 @@
 language: python
 python:
-	- '3.5'
+  - '3.5'
+
 before_script:
-	- pip install -r requirements.txt
+  - pip install -r requirements.txt
 
 branches:
-    only:
-	- staging
+  only:
+    - staging
 
-env: DJANGO_SETTINGS_MODULE='PurBeurre.settings.travis'
+env: DJANGO_SETTINGS_MODULE="PurBeurre.settings.travis"
 
 services:
-	- postgresql
+  - postgresql
 
 script:
-	- ./manage.py test
+  - ./manage.py test
