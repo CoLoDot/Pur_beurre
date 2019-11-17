@@ -6,7 +6,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import Users, Products, Saving
 from .form import Connexion
-
+from .update import update as updating_products_table
 
 # Create your tests here.
 
@@ -158,3 +158,24 @@ class SavingPageTestCase(TestCase):
         save_to_db = Saving.objects.create(contact=self.contact.email,
                                            product_key=product_id + 1)
         self.assertNotEqual(product_id, save_to_db.product_key)
+
+
+class UpdateTestCase(TestCase):
+
+    def setUp(self):
+        Products.objects.create(name='Chocolat Chaud',
+                                nutriscore='d',
+                                category=['coco', 'cococho'],
+                                url='http://chocolatchaud',
+                                picture='http://chocolatchaudpicture')
+        Products.objects.create(name='Chocolat Noir',
+                                nutriscore='d',
+                                category=['coco', 'cococho'],
+                                url='http://chocolatchaud',
+                                picture='http://chocolatchaudpicture')
+
+    def test_update_products_model(self):
+        get_product_db_len = len(Products.objects.all())
+        updating_products_table()
+        get_product_db_len_after_update = len(Products.objects.all())
+        self.assertGreater(get_product_db_len_after_update, get_product_db_len)
