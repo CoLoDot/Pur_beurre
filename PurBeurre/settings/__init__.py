@@ -30,6 +30,7 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'substitut',
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,3 +135,7 @@ INTERNAL_IPS = ['127.0.0.1']
 LOGIN_REDIRECT_URL = '/substitut/userproducts'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+CRONJOBS = [
+    ('*/1 * * * *', 'substitut.update.update')
+]
