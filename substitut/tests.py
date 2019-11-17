@@ -176,7 +176,6 @@ class UpdateTestCase(TestCase):
 
     def test_update_products_model(self):
         get_product_db_len = len(Products.objects.all())
-        up = updating_products_table()
+        updating_products_table()
         get_product_db_len_after_update = len(Products.objects.all())
-        self.assertEqual(up, 'Products Model Updated')
         self.assertGreater(get_product_db_len, get_product_db_len_after_update)
