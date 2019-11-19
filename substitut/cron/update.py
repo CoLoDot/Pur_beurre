@@ -16,6 +16,7 @@ def update():
     for product in products:
         request_update = requests.get("https://fr.openfoodfacts.org/cgi/search.pl?action=process&search_terms="
                                       + str(product.name) + "&sort_by=unique_scans_n&page_size=20&json=1")
+        capture_message('Cron job for {}'.format(str(product.name)))
         response = json.loads(request_update.text)
         capture_event(response)
         products_created = 0
