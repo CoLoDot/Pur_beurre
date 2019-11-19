@@ -1,12 +1,10 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import authenticate
-from django.contrib import auth
 
 from django.contrib.auth.models import User
 from .models import Users, Products, Saving
 from .form import Connexion
-from .update import update as updating_products_table
+from substitut.cron.update import update as updating_products_table
 
 # Create your tests here.
 
@@ -160,7 +158,7 @@ class SavingPageTestCase(TestCase):
         self.assertNotEqual(product_id, save_to_db.product_key)
 
 
-class UpdateTestCase(TestCase):
+class CronTestCase(TestCase):
 
     def setUp(self):
         Products.objects.create(name='Chocolat Chaud',
