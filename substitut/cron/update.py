@@ -18,6 +18,7 @@ def update():
                                       + str(product.name) + "&sort_by=unique_scans_n&page_size=20&json=1")
         response = json.loads(request_update.text)
         capture_event(response)
+        products_created = 0
         for product_index in range(0, int(response['count'])):
             if response['products'][product_index]['states_hierarchy'][1] == 'en:complete':
                 try:
@@ -54,3 +55,7 @@ def update():
                                         category=get_cat,
                                         picture=get_img,
                                         url=get_url)
+
+                products_created += 1
+                if products_created < 30:
+                    break
