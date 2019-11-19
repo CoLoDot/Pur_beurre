@@ -57,5 +57,5 @@ def update():
                                         url=get_url)
 
                 products_created += 1
-                if products_created < 100:
+                if products_created < 10:
                     break
