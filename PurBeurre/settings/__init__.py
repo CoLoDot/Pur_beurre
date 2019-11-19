@@ -12,9 +12,16 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import dj_database_url
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
+sentry_sdk.init(
+    dsn="",
+    integrations=[DjangoIntegration()]
+)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -137,5 +144,5 @@ LOGIN_REDIRECT_URL = '/substitut/userproducts'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CRONJOBS = [
-    ('*/1 * * * *', 'substitut.update.update')
+    ('*/1 * * * *', 'substitut.cron.update.update')
 ]
