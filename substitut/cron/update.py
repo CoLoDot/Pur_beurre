@@ -17,7 +17,6 @@ def update():
         request_update = requests.get("https://fr.openfoodfacts.org/cgi/search.pl?action=process&search_terms="
                                       + str(product.name) + "&sort_by=unique_scans_n&page_size=20&json=1")
         response = json.loads(request_update.text)
-        capture_message("response status code ".format((response.status_code)))
         for product_index in range(0, int(response['count'])):
             if response['products'][product_index]['states_hierarchy'][1] == 'en:complete':
                 try:
